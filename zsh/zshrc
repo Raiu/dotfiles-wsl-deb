@@ -4,31 +4,42 @@ setopt extended_glob
 _exist() { (( $+commands[$1] )) ; }
 
 
+[[ ! -d "${XDG_STATE_HOME}/zsh" ]]  && mkdir -p "${XDG_STATE_HOME}/zsh"
+[[ ! -d "${XDG_CACHE_HOME}/zsh" ]]  && mkdir -p "${XDG_CACHE_HOME}/zsh"
+
 # Source some files
 [[ -e "${ZDOTDIR}/zsh.export" ]]    && source "${ZDOTDIR}/zsh.export"
 [[ -e "${ZDOTDIR}/zsh.zstyles" ]]   && source "${ZDOTDIR}/zsh.zstyles"
 
 # antidote
-[[ -e "${ZDOTDIR:-$HOME}/antidote" ]] ||
-  git clone "https://github.com/mattmc3/antidote.git" "${ZDOTDIR:-~}/antidote"
-source "${ZDOTDIR:-$HOME}/antidote/antidote.zsh"
-antidote load "${ZDOTDIR:-$HOME}/zsh.plugins.txt"
-
+[[ -e "${ZDOTDIR}/antidote" ]] ||
+  git clone "https://github.com/mattmc3/antidote.git" "${ZDOTDIR}/antidote"
+source "${ZDOTDIR}/antidote/antidote.zsh"
+antidote load "${ZDOTDIR}/zsh.plugins.list"
 
 # History
 setopt appendhistory
-[[ ! -d "${XDG_STATE_HOME}/zsh" ]] && mkdir -p "${XDG_STATE_HOME}/zsh"
+setopt EXTENDED_HISTORY
 HISTFILE="${XDG_STATE_HOME}/zsh/history"
 HISTSIZE=10000
 SAVEHIST=10000
 
-# comp
-autoload -Uz compinit && compinit
+# Prompt
+autoload -U compinit promptinit
+promptinit
+prompt pure
+compinit
 
+# Search history
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+bindkey "$terminfo[kcuu1]" history-substring-search-up
+bindkey "$terminfo[kcud1]" history-substring-search-down
 
-# Pure
-[[ -e "${ZDOTDIR}/zsh.plugin.pure" ]]    && source "${ZDOTDIR}/zsh.plugin.pure"
-autoload -Uz promptinit && promptinit && prompt pure
+# Zoxide
+if _exist "zoxide"; then
+    eval "$(zoxide init zsh)"
+fi
 
 
 ## TMUX
@@ -47,11 +58,6 @@ autoload -Uz promptinit && promptinit && prompt pure
 #[[ -z "$TMUX" ]] && TERM="xterm-256color"
 
 
-# Zoxide
-if _exist "zoxide"; then
-    eval "$(zoxide init zsh)"
-fi
-
 # List on cd
 if _exist "exa"; then
     chpwd() {
@@ -63,4 +69,4 @@ else
     }
 fi
 
-[[ -e "${ZDOTDIR}/zsh.alias" ]]    && source "${ZDOTDIR}/zsh.alias"
+[[ -e "${ZDOTDIR}/zsh.alias" ]] && source "${ZDOTDIR}/zsh.alias"

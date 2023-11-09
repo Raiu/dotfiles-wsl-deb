@@ -1,5 +1,6 @@
 
 # DIR
+alias -g ..='cd ..'
 alias -g ...='../..'
 alias -g ....='../../..'
 alias -g .....='../../../..'
@@ -23,7 +24,7 @@ alias rd=rmdir
 alias egrep='grep -E --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn,.idea,.tox}'
 alias fgrep='grep -F --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn,.idea,.tox}'
 
-
+alias _='sudo '
 
 # some distro name bat as batcat
 _exist "batcat" && alias bat="batcat"
@@ -53,8 +54,17 @@ if _exist "docker"; then
 fi
 
 alias screen='screen -e^tt'
-alias wget='wget --hsts-file $XDG_CACHE_HOME/wget/wget-hsts'
+alias wget='wget --hsts-file ${XDG_CACHE_HOME}/wget/wget-hsts'
 
 alias zre='source "${ZDOTDIR}/.zshrc"'
 alias zed='vim "${ZDOTDIR}/.zshrc"'
 alias ved='vim "${XDG_CONFIG_HOME}/vim/vimrc"'
+
+
+alias tm='tmux'
+alias tma='tm attach-session'
+alias tmat='tma -t'
+alias tmks='tm kill-session -a'
+alias tml='tm list-sessions'
+alias tmn='tm new-session'
+alias tmns='tmn -s'
