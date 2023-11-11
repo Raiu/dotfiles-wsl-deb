@@ -1,2 +1,11 @@
+# Add local bin to path
+path=("${HOME}/.local/bin" $path)
+export PATH
+
+# Vim
 export EDITOR=vim
 export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
+
+# Ripgrep
+export RIPGREP_CONFIG_PATH="${XDG_CONFIG_HOME}/ripgrep/rg.conf"
+

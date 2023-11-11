@@ -1,9 +1,14 @@
 setopt extended_glob
+setopt autocd
+setopt histignoredups
+setopt histignorespace
+setopt appendhistory
+setopt EXTENDED_HISTORY
 
 # common helpers
 _exist() { (( $+commands[$1] )) ; }
 
-
+# Create state and cache dir
 [[ ! -d "${XDG_STATE_HOME}/zsh" ]]  && mkdir -p "${XDG_STATE_HOME}/zsh"
 [[ ! -d "${XDG_CACHE_HOME}/zsh" ]]  && mkdir -p "${XDG_CACHE_HOME}/zsh"
 
@@ -18,8 +23,6 @@ source "${ZDOTDIR}/antidote/antidote.zsh"
 antidote load "${ZDOTDIR}/zsh.plugins.list"
 
 # History
-setopt appendhistory
-setopt EXTENDED_HISTORY
 HISTFILE="${XDG_STATE_HOME}/zsh/history"
 HISTSIZE=10000
 SAVEHIST=10000

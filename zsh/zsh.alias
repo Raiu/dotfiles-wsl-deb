@@ -1,6 +1,5 @@
 
 # DIR
-alias -g ..='cd ..'
 alias -g ...='../..'
 alias -g ....='../../..'
 alias -g .....='../../../..'
@@ -28,6 +27,7 @@ alias _='sudo '
 
 # some distro name bat as batcat
 _exist "batcat" && alias bat="batcat"
+_exist "fdfind" && alias fd="fdfind"
 
 # use exa
 if _exist "exa"; then

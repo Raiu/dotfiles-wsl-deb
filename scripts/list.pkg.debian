@@ -2,7 +2,6 @@ apt-transport-https
 atool
 bash
 bat
-black
 ca-certificates
 command-not-found
 curl
@@ -11,7 +10,6 @@ dos2unix
 exa
 fd-find
 fdupes
-fontconfig
 fzf
 git
 gnupg
@@ -24,7 +22,6 @@ lsof
 ltrace
 moreutils
 mtr-tiny
-p7zip
 parallel
 progress
 psmisc
@@ -40,3 +37,5 @@ wget
 zip
 zoxide
 zsh
+tmux
+man

@@ -1,0 +1,6 @@
+setopt extended_glob
+setopt autocd
+setopt histignoredups
+setopt histignorespace
+setopt appendhistory
+setopt EXTENDED_HISTORY
