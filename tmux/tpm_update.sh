@@ -9,7 +9,8 @@ SH_DIR=$(dirname "$0")
 REPO_DIR="${SH_DIR}/${REPO_DIR}"
 UPDATE_FILE="${SH_DIR}/${UPDATE_FILE}"
 
-if [ -e "$UPDATE_FILE" ] && [ $(($(date +%s) - $(stat -c%Y "$UPDATE_FILE"))) -lt $UPDATE_INTERVAL ]; then
+if [ -e "$UPDATE_FILE" ] && 
+  [ $(($(date +%s) - $(stat -c%Y "$UPDATE_FILE"))) -lt $UPDATE_INTERVAL ]; then
     exit 0
 fi
 
